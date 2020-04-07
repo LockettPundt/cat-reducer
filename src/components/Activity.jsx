@@ -19,8 +19,8 @@ const Button = styled.button`
 const Activity = ({
   setName, setActivity, activity, name,
 }) => {
-  const [inputActivity, setInputActivity] = useState(activity.activity);
-  const [inputName, setInputName] = useState(name.name);
+  const [inputActivity, setInputActivity] = useState('');
+  const [inputName, setInputName] = useState('');
 
   const handleName = (e) => {
     setInputName(e.target.value);
@@ -47,8 +47,8 @@ const Activity = ({
         {activity.activity}
       </p>
       <form onSubmit={handleSubmit}>
-        <input value={inputName} placeholder="Enter a name" onChange={handleName} />
-        <input value={inputActivity} placeholder="enter an activity" onChange={handleActivity} />
+        <input value={inputName} placeholder={name.name} onChange={handleName} />
+        <input value={inputActivity} placeholder={activity.activity} onChange={handleActivity} />
         <Button type="submit">SUBMIT!</Button>
       </form>
 
