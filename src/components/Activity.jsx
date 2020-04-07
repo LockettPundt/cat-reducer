@@ -17,10 +17,10 @@ const Button = styled.button`
 
 
 const Activity = ({
-  activity, name, setName, setActivity,
+  setName, setActivity, activity, name,
 }) => {
-  const [inputActivity, setInputActivity] = useState(activity);
-  const [inputName, setInputName] = useState(name);
+  const [inputActivity, setInputActivity] = useState(activity.activity);
+  const [inputName, setInputName] = useState(name.name);
 
   const handleName = (e) => {
     setInputName(e.target.value);
@@ -41,10 +41,10 @@ const Activity = ({
     <>
       <h1>What is the cat doing?</h1>
       <p>
-        {name}
+        {name.name}
         {' '}
         is.....
-        {activity}
+        {activity.activity}
       </p>
       <form onSubmit={handleSubmit}>
         <input value={inputName} placeholder="Enter a name" onChange={handleName} />
@@ -58,8 +58,13 @@ const Activity = ({
 
 
 const mapStateToProps = (state) => {
+  console.log('this is the state', state);
   const { activity, name } = state;
-  return activity;
+  console.log(name, activity);
+  return {
+    name,
+    activity,
+  };
 };
 
 
