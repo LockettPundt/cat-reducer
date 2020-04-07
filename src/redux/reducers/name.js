@@ -1,5 +1,5 @@
 import {
-  ACTION_SET_ACTIVITY, ACTION_SET_NAME,
+  ACTION_SET_NAME,
 } from '../actionTypes';
 
 const initialState = {
