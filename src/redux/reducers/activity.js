@@ -1,25 +1,16 @@
 import {
-  ACTION_SET_ACTIVITY, ACTION_SET_NAME,
+  ACTION_SET_ACTIVITY,
 } from '../actionTypes';
 
 const initialState = {
-  name: 'Chloe',
+  // name: 'Chloe',
   activity: 'napping',
 };
 
 const activityReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ACTION_SET_NAME: {
-      const { name } = action.payload;
-      // console.log(name);
-      return {
-        ...state,
-        name,
-      };
-    }
     case ACTION_SET_ACTIVITY: {
       const { activity } = action.payload;
-      // console.log(activity);
       return {
         ...state,
         activity,
