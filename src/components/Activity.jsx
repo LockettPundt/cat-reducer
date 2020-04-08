@@ -3,8 +3,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import Cats from './Cats';
+import AddCat from './AddCat';
 import {
-  setName, setActivity,
+  setName, setActivity, play, eat, nap, setNewCat,
 } from '../redux/actions';
 
 const Button = styled.button`
@@ -17,7 +19,7 @@ const Button = styled.button`
 
 
 const Activity = ({
-  setName, setActivity, activity, name,
+  setName, setActivity, activity, name, setNewCat,
 }) => {
   const [inputActivity, setInputActivity] = useState('');
   const [inputName, setInputName] = useState('');
@@ -26,29 +28,27 @@ const Activity = ({
     setInputName(e.target.value);
   };
 
-  const handleActivity = (e) => {
-    setInputActivity(e.target.value);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setName(inputName);
     setActivity(inputActivity);
-    console.log('Submitted');
+    const id = Math.random().toString(36).substring(2, 15)
+      + Math.random().toString(36).substring(2, 15);
+    setNewCat(id, inputName, inputActivity);
+    // console.log('Submitted');
   };
 
   return (
     <>
       <h1>What is the cat doing?</h1>
-      <p>
-        {name.name}
-        {' '}
-        is.....
-        {activity.activity}
-      </p>
+
+      <Cats />
+      <Button onClick={() => setInputActivity('eating')}>Eat!</Button>
+      <Button onClick={() => setInputActivity('playing')}>Play!</Button>
+      <Button onClick={() => setInputActivity('napping')}>Nap!</Button>
       <form onSubmit={handleSubmit}>
         <input value={inputName} placeholder={name.name} onChange={handleName} />
-        <input value={inputActivity} placeholder={activity.activity} onChange={handleActivity} />
+
         <Button type="submit">SUBMIT!</Button>
       </form>
 
@@ -58,9 +58,9 @@ const Activity = ({
 
 
 const mapStateToProps = (state) => {
-  console.log('this is the state', state);
+  // console.log('this is the state', state);
   const { activity, name } = state;
-  console.log(name, activity);
+  // console.log(name, activity);
   return {
     name,
     activity,
@@ -68,4 +68,6 @@ const mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps, { setName, setActivity })(Activity);
+export default connect(mapStateToProps, {
+  setName, setActivity, play, eat, nap, setNewCat,
+})(Activity);
