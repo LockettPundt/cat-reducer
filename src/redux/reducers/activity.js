@@ -1,5 +1,5 @@
 import {
-  ACTION_SET_ACTIVITY,
+  ACTION_SET_ACTIVITY, ACTION_EAT, ACTION_PLAY, ACTION_NAP,
 } from '../actionTypes';
 
 const initialState = {
